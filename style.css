@@ -1587,3 +1587,18 @@ font-size:18px;
 }
 
 }
+/* Contact Links */
+
+.contact-card a{
+    color:#fff;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.contact-card a:hover{
+    color:#d4af37;
+}
+.whatsapp-btn{
+    display:inline-block;
+    margin-top:40px;
+}
