@@ -580,7 +580,7 @@ ABOUT
 ==================================================*/
 
 .about{
-    background:#080808;
+    background:transparent;
 }
 
 .about-wrapper{
@@ -644,7 +644,7 @@ SERVICES
 ==================================================*/
 
 .services{
-    background:#050505;
+    background:transparent;
 }
 
 .services-grid{
@@ -738,7 +738,7 @@ PORTFOLIO
 ==================================================*/
 
 .portfolio{
-    background:#080808;
+    background:transparent;
 }
 
 .portfolio-filter{
@@ -831,7 +831,7 @@ WHY CHOOSE US
 ==================================================*/
 
 .why-us{
-    background:#050505;
+    background:transparent;
 }
 
 .why-grid{
@@ -873,7 +873,7 @@ PROCESS
 ==================================================*/
 
 .process{
-    background:#080808;
+    background:transparent;
 }
 
 .process-timeline{
@@ -920,7 +920,7 @@ COUNTER
 ==================================================*/
 
 .counter{
-    background:#050505;
+    background:transparent;
 }
 
 .counter-grid{
@@ -961,7 +961,7 @@ TESTIMONIALS
 ==================================================*/
 
 .testimonials{
-    background:#080808;
+    background:transparent;
 }
 
 .testimonial-slider{
@@ -1019,7 +1019,7 @@ FAQ
 ==================================================*/
 
 .faq{
-    background:#050505;
+    background:transparent;
 }
 
 .faq-item{
@@ -1054,7 +1054,7 @@ CONTACT
 ==================================================*/
 
 .contact{
-    background:#080808;
+    background:transparent;
 }
 
 .contact-wrapper{
@@ -1109,7 +1109,7 @@ FOOTER
 ==================================================*/
 
 .footer{
-    background:#050505;
+    background:transparent;
     padding:80px 0 30px;
 }
 
