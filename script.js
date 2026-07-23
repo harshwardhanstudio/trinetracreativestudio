@@ -1,15 +1,17 @@
 /*=========================================
-HARTION STUDIO SCRIPT
-PART 1
+   HARTION STUDIO
+   SCRIPT.JS - PART 1
 =========================================*/
 
-/* Sticky Header */
+// ======================
+// Sticky Header
+// ======================
 
-const header = document.querySelector("header");
+const header = document.getElementById("header");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 80) {
+    if (window.scrollY > 60) {
         header.classList.add("sticky");
     } else {
         header.classList.remove("sticky");
@@ -17,274 +19,201 @@ window.addEventListener("scroll", () => {
 
 });
 
-/* Mobile Menu */
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
+// ======================
+// Mobile Menu
+// ======================
 
-if (menuToggle) {
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobile-menu");
+const closeBtn = document.getElementById("close-btn");
 
-    menuToggle.addEventListener("click", () => {
+if(menuToggle){
 
-        navLinks.classList.toggle("active");
-        menuToggle.classList.toggle("active");
+menuToggle.addEventListener("click",()=>{
 
-    });
-
-}
-
-/* Close Menu */
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navLinks.classList.remove("active");
-        menuToggle.classList.remove("active");
-
-    });
-
-});
-
-/* Smooth Scroll */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            window.scrollTo({
-
-                top: target.offsetTop - 70,
-
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-/* Active Navigation */
-
-const sections = document.querySelectorAll("section");
-const navItems = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.clientHeight;
-
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-
-    });
-
-    navItems.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-});
-/*=========================================
-HARTION STUDIO SCRIPT
-PART 2
-=========================================*/
-
-/* Scroll Reveal */
-
-const revealElements = document.querySelectorAll(
-".fade-up,.fade-left,.fade-right"
-);
-
-function revealOnScroll(){
-
-const trigger = window.innerHeight - 100;
-
-revealElements.forEach(el=>{
-
-const top = el.getBoundingClientRect().top;
-
-if(top < trigger){
-
-el.classList.add("active");
-
-}
+mobileMenu.classList.add("active");
+document.body.style.overflow="hidden";
 
 });
 
 }
 
-window.addEventListener("scroll",revealOnScroll);
+if(closeBtn){
 
-revealOnScroll();
+closeBtn.addEventListener("click",()=>{
 
-/* Counter */
-
-const counters=document.querySelectorAll(".counter-box h2");
-
-let counterStarted=false;
-
-function startCounter(){
-
-if(counterStarted) return;
-
-const section=document.querySelector(".counter");
-
-if(!section) return;
-
-const top=section.getBoundingClientRect().top;
-
-if(top<window.innerHeight-120){
-
-counterStarted=true;
-
-counters.forEach(counter=>{
-
-const target=+counter.innerText.replace(/\D/g,'');
-
-let count=0;
-
-const speed=target/100;
-
-const update=()=>{
-
-count+=speed;
-
-if(count<target){
-
-counter.innerText=Math.ceil(count)+"+";
-
-requestAnimationFrame(update);
-
-}else{
-
-counter.innerText=target+"+";
-
-}
-
-};
-
-update();
+mobileMenu.classList.remove("active");
+document.body.style.overflow="";
 
 });
 
 }
 
-}
 
-window.addEventListener("scroll",startCounter);
+// ======================
+// Close Menu On Link Click
+// ======================
 
-/* Back To Top */
+document.querySelectorAll(".mobile-nav a").forEach(link=>{
 
-const topBtn=document.querySelector(".back-to-top");
+link.addEventListener("click",()=>{
 
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>500){
-
-topBtn.style.opacity="1";
-topBtn.style.visibility="visible";
-
-}else{
-
-topBtn.style.opacity="0";
-topBtn.style.visibility="hidden";
-
-}
+mobileMenu.classList.remove("active");
+document.body.style.overflow="";
 
 });
 
-if(topBtn){
+});
 
-topBtn.addEventListener("click",()=>{
+
+// ======================
+// Smooth Scroll
+// ======================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+e.preventDefault();
 
 window.scrollTo({
 
-top:0,
+top:target.offsetTop-80,
 
 behavior:"smooth"
 
 });
 
-});
-
 }
 
-/* Hero Image Animation */
-
-const heroImage=document.querySelector(".hero-image");
-
-window.addEventListener("mousemove",(e)=>{
-
-if(!heroImage) return;
-
-const x=(window.innerWidth/2-e.pageX)/35;
-
-const y=(window.innerHeight/2-e.pageY)/35;
-
-heroImage.style.transform=`translate(${x}px,${y}px)`;
+});
 
 });
 
-/* Header Shadow */
+
+// ======================
+// Active Navigation
+// ======================
+
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".navbar a");
 
 window.addEventListener("scroll",()=>{
 
-if(window.scrollY>60){
+let current="";
 
-header.style.boxShadow="0 8px 30px rgba(0,0,0,.35)";
+sections.forEach(section=>{
 
-}else{
+const top=section.offsetTop-120;
 
-header.style.boxShadow="none";
+if(pageYOffset>=top){
+
+current=section.getAttribute("id");
 
 }
 
 });
+
+navLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(link.getAttribute("href")==="#"+current){
+
+link.classList.add("active");
+
+}
+
+});
+
+});
 /*=========================================
-HARTION STUDIO SCRIPT
-PART 3
+  COUNTER ANIMATION
 =========================================*/
 
-/* Portfolio Filter */
+const counters = document.querySelectorAll(".count");
 
-const filterBtns = document.querySelectorAll(".filter-btn");
+let counterStarted = false;
+
+function runCounter() {
+
+    if (counterStarted) return;
+
+    const counterSection = document.getElementById("counter");
+
+    if (!counterSection) return;
+
+    const sectionTop = counterSection.getBoundingClientRect().top;
+
+    if (sectionTop < window.innerHeight - 120) {
+
+        counterStarted = true;
+
+        counters.forEach(counter => {
+
+            const target = Number(counter.dataset.target);
+
+            let current = 0;
+
+            const increment = target / 100;
+
+            function updateCounter() {
+
+                current += increment;
+
+                if (current < target) {
+
+                    counter.innerText = Math.ceil(current);
+
+                    requestAnimationFrame(updateCounter);
+
+                } else {
+
+                    counter.innerText = target;
+
+                }
+
+            }
+
+            updateCounter();
+
+        });
+
+    }
+
+}
+
+window.addEventListener("scroll", runCounter);
+
+
+
+/*=========================================
+  PORTFOLIO FILTER
+=========================================*/
+
+const filterButtons = document.querySelectorAll(".portfolio-filter button");
 const portfolioItems = document.querySelectorAll(".portfolio-item");
 
-filterBtns.forEach(btn => {
+filterButtons.forEach(button => {
 
-    btn.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
-        filterBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+        filterButtons.forEach(btn => btn.classList.remove("active"));
 
-        const filter = btn.dataset.filter;
+        button.classList.add("active");
+
+        const filter = button.dataset.filter;
 
         portfolioItems.forEach(item => {
 
             if (
                 filter === "all" ||
-                item.dataset.category === filter
+                item.classList.contains(filter)
             ) {
 
                 item.style.display = "block";
@@ -294,7 +223,7 @@ filterBtns.forEach(btn => {
                     item.style.opacity = "1";
                     item.style.transform = "scale(1)";
 
-                }, 150);
+                }, 50);
 
             } else {
 
@@ -315,15 +244,21 @@ filterBtns.forEach(btn => {
 
 });
 
-/* FAQ */
 
-document.querySelectorAll(".faq-item").forEach(item => {
+
+/*=========================================
+  FAQ
+=========================================*/
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item => {
 
     const question = item.querySelector(".faq-question");
 
     question.addEventListener("click", () => {
 
-        document.querySelectorAll(".faq-item").forEach(faq => {
+        faqItems.forEach(faq => {
 
             if (faq !== item) {
 
@@ -339,85 +274,207 @@ document.querySelectorAll(".faq-item").forEach(item => {
 
 });
 
-/* Testimonials Auto Slider */
 
-const slider = document.querySelector(".testimonial-slider");
 
-if (slider) {
+/*=========================================
+  SCROLL REVEAL
+=========================================*/
 
-    let scrollAmount = 0;
+const revealElements = document.querySelectorAll(
 
-    setInterval(() => {
+".section,.service-card,.portfolio-item,.why-card,.process-card,.testimonial-card,.contact-card"
 
-        scrollAmount += 380;
+);
 
-        if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
+function revealOnScroll() {
 
-            scrollAmount = 0;
+    revealElements.forEach(el => {
+
+        const top = el.getBoundingClientRect().top;
+
+        if (top < window.innerHeight - 100) {
+
+            el.classList.add("show");
 
         }
 
-        slider.scrollTo({
-
-            left: scrollAmount,
-
-            behavior: "smooth"
-
-        });
-
-    }, 4000);
+    });
 
 }
 
-/* Golden Particles */
+window.addEventListener("scroll", revealOnScroll);
 
-const particleContainer = document.querySelector(".gold-particles");
+revealOnScroll();
+/*=========================================
+  TESTIMONIAL SLIDER
+=========================================*/
 
-if (particleContainer) {
+const testimonialCards = document.querySelectorAll(".testimonial-card");
+const prevBtn = document.querySelector(".prev-testimonial");
+const nextBtn = document.querySelector(".next-testimonial");
 
-    for (let i = 0; i < 40; i++) {
+let currentSlide = 0;
 
-        const particle = document.createElement("span");
+function showSlide(index){
 
-        particle.style.left = Math.random() * 100 + "%";
-        particle.style.animationDuration = 4 + Math.random() * 6 + "s";
-        particle.style.animationDelay = Math.random() * 5 + "s";
-        particle.style.opacity = Math.random();
+    testimonialCards.forEach((card,i)=>{
 
-        particleContainer.appendChild(particle);
+        card.style.display = i === index ? "block" : "none";
 
-    }
+    });
 
 }
 
-/* Page Loader */
+if(testimonialCards.length){
 
-window.addEventListener("load", () => {
+    showSlide(currentSlide);
 
-    const loader = document.querySelector(".loader");
+    nextBtn?.addEventListener("click",()=>{
 
-    if (loader) {
+        currentSlide++;
 
-        loader.style.opacity = "0";
+        if(currentSlide >= testimonialCards.length){
 
-        setTimeout(() => {
+            currentSlide = 0;
 
-            loader.style.display = "none";
+        }
 
-        }, 600);
+        showSlide(currentSlide);
+
+    });
+
+    prevBtn?.addEventListener("click",()=>{
+
+        currentSlide--;
+
+        if(currentSlide < 0){
+
+            currentSlide = testimonialCards.length-1;
+
+        }
+
+        showSlide(currentSlide);
+
+    });
+
+    setInterval(()=>{
+
+        currentSlide++;
+
+        if(currentSlide >= testimonialCards.length){
+
+            currentSlide = 0;
+
+        }
+
+        showSlide(currentSlide);
+
+    },5000);
+
+}
+
+
+/*=========================================
+ BACK TO TOP
+=========================================*/
+
+const backTop = document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY > 500){
+
+        backTop.style.opacity="1";
+        backTop.style.visibility="visible";
+
+    }else{
+
+        backTop.style.opacity="0";
+        backTop.style.visibility="hidden";
 
     }
 
 });
 
-/* Current Year */
+backTop?.addEventListener("click",()=>{
 
-const year = document.querySelector("#year");
+    window.scrollTo({
 
-if (year) {
+        top:0,
 
-    year.textContent = new Date().getFullYear();
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/*=========================================
+ MOUSE GLOW
+=========================================*/
+
+const mouseGlow=document.querySelector(".mouse-glow");
+
+document.addEventListener("mousemove",(e)=>{
+
+    if(!mouseGlow) return;
+
+    mouseGlow.style.left=e.clientX+"px";
+    mouseGlow.style.top=e.clientY+"px";
+
+});
+
+
+/*=========================================
+ GOLD PARTICLES
+=========================================*/
+
+const particleBox=document.querySelector(".gold-particles");
+
+if(particleBox){
+
+    for(let i=0;i<35;i++){
+
+        const span=document.createElement("span");
+
+        span.style.left=Math.random()*100+"%";
+        span.style.animationDelay=Math.random()*6+"s";
+        span.style.animationDuration=5+Math.random()*5+"s";
+
+        particleBox.appendChild(span);
+
+    }
 
 }
 
-console.log("Hartion Studio Website Loaded Successfully");
+
+/*=========================================
+ HERO PARALLAX
+=========================================*/
+
+const heroImage=document.querySelector(".hero-image");
+
+window.addEventListener("mousemove",(e)=>{
+
+    if(!heroImage) return;
+
+    const x=(window.innerWidth/2-e.clientX)/40;
+    const y=(window.innerHeight/2-e.clientY)/40;
+
+    heroImage.style.transform=`translate(${x}px,${y}px)`;
+
+});
+
+
+/*=========================================
+ PAGE LOADED
+=========================================*/
+
+window.addEventListener("load",()=>{
+
+    revealOnScroll();
+    runCounter();
+
+    console.log("Hartion Studio Loaded Successfully");
+
+});
