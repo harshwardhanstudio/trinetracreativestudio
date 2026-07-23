@@ -697,21 +697,17 @@ PORTFOLIO
 
 .portfolio-grid{
     display:grid;
-    grid-template-columns:repeat(6,1fr);
-    gap:15px;
-    max-width:1700px;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    max-width:1400px;
     margin:auto;
 }
-
 .portfolio-item img{
     width:100%;
-    aspect-ratio:16/10;
-    height:auto;
+    height:300px;
     object-fit:cover;
     border-radius:18px;
-    display:block;
 }
-
 .portfolio-item{
     position:relative;
     overflow:hidden;
